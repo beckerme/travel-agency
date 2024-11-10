@@ -7,9 +7,9 @@
     "test": "tests"
   },
   "scripts": {
-  "start": "node src/app.js",
-  "test": "jest"
-},
+    "start": "node src/app.js",
+    "test": "jest"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
