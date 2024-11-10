@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-// Configura o servidor para servir arquivos estáticos da pasta "src"
-app.use(express.static(path.join(__dirname, 'src')));
+// Configura o servidor para servir arquivos estáticos da pasta "public"
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Configuração da rota principal
 app.get('/', (req, res) => {
