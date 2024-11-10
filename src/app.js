@@ -1,18 +1,21 @@
+// app.js ou server.js
 const express = require('express');
+const path = require('path');
+
 const app = express();
 
-// Configuração da rota principal
+// Configura o servidor para servir arquivos estáticos da pasta "public"
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Sua rota principal
 app.get('/', (req, res) => {
   res.send('Bem-vindo a Agencia de Viagens!');
 });
 
-// Iniciar o servidor apenas se o arquivo for executado diretamente
-if (require.main === module) {
-  const PORT = 3000;
-  app.listen(PORT, () => {
-    console.log(`Servidor está rodando na porta ${PORT}`);
-  });
-}
+// Outras rotas e configurações...
 
-// Exporta o app para que ele possa ser utilizado nos testes
-module.exports = app;
+// Inicialização do servidor
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
