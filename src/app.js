@@ -1,14 +1,14 @@
-const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 3000;
+const request = require('supertest');
+const app = require('../src/app');
+const server = app.listen(3000);  // Armazene a instância do servidor para fechar depois
 
-app.get('/', (req, res) => {
-  res.send('Bem-vindo à Agência de Viagens!');
+describe('Testando rota principal', () => {
+  it('Deve responder com "Bem-vindo à Agência de Viagens!"', async () => {
+    const response = await request(app).get('/');
+    expect(response.text).toBe('Bem-vindo à Agência de Viagens!');
+  });
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor está rodando na porta ${PORT}`);
+afterAll(() => {
+  server.close();  // Fecha o servidor após os testes
 });
-
-module.exports = app;
-
