@@ -1,14 +1,18 @@
-const request = require('supertest');
-const app = require('../src/app');
-const server = app.listen(3000);  // Armazene a instância do servidor para fechar depois
+const express = require('express');
+const app = express();
 
-describe('Testando rota principal', () => {
-  it('Deve responder com "Bem-vindo à Agência de Viagens!"', async () => {
-    const response = await request(app).get('/');
-    expect(response.text).toBe('Bem-vindo à Agência de Viagens!');
+// Configuração da rota principal
+app.get('/', (req, res) => {
+  res.send('Bem-vindo à Agência de Viagens!');
+});
+
+// Iniciar o servidor apenas se o arquivo for executado diretamente
+if (require.main === module) {
+  const PORT = 3000;
+  app.listen(PORT, () => {
+    console.log(`Servidor está rodando na porta ${PORT}`);
   });
-});
+}
 
-afterAll(() => {
-  server.close();  // Fecha o servidor após os testes
-});
+// Exporta o app para que ele possa ser utilizado nos testes
+module.exports = app;
