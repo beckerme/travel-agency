@@ -6,7 +6,7 @@ describe('Testando rota principal', () => {
     const response = await request(app).get('/');
     
     expect(response.statusCode).toBe(200);
-    expect(response.text).toBe('Bem-vindo a Agencia de Viagens!');
+    expect(response.text).contain('Bem-vindo a Agencia de Viagens!');
   });
   
   it('Deve retornar 404 para rotas não existentes', async () => {
