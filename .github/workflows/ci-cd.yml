@@ -41,14 +41,17 @@ jobs:
       
       - name: Verify if all files are of type css/html/js/ts
         run: |
-          # Verifica arquivos com extensões diferentes de html, css, js, ts
-          invalid_files=$(find . -type f ! \( -iname "*.html" -o -iname "*.css" -o -iname "*.js" -o -iname "*.ts" \))
+          # Verifica alterações no código
+          files_changed=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          invalid_files=$(echo "$files_changed" | grep -vE '\.(html|css|js|ts|yml|json)$')
+
           if [ -n "$invalid_files" ]; then
             echo "Arquivos inválidos encontrados: $invalid_files"
             exit 1
           else
             echo "Todos os arquivos têm extensões permitidas."
           fi
+    
 
       - name: Run tests
         run: npm test
@@ -60,3 +63,4 @@ jobs:
     steps:
       - name: Deploy to production
         run: echo "Deploying to production environment"
+

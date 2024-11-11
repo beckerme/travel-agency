@@ -7,7 +7,7 @@ app.get('/', (req, res) => {
   res.send('Bem vindo');
 });
 
-// Configura o servidor para servir arquivos estáticos da pasta "src"
+// Configura o servidor para servir arquivos estáticos da pasta "public"
 app.use(express.static(path.join(__dirname, '../public')));
 
 // Iniciar o servidor apenas se o arquivo for executado diretamente
