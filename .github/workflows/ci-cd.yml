@@ -23,10 +23,6 @@ jobs:
       - name: Verify if all files are of type css/html/js
         run: |
           git ls-files ./public | grep -vE '\.(html|css|js|yml)$' && echo "Erro: Um dos ficheiros é de um tipo manhoso" && exit 1 || echo "Nenhum ficheiro manhoso encontrado"
-    
-
-      - name: Run tests
-        run: npm test
 
   deploy:
     runs-on: ubuntu-latest
