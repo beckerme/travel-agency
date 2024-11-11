@@ -41,7 +41,7 @@ jobs:
       
       - name: Verify if all files are of type css/html/js
         run: |
-          grep -vErf '\.(html|css|js|yml)$' ./public && echo "Erro: Um dos ficheiros é de um tipo manhoso" && exit 1 || echo "Nenhum ficheiro manhoso encontrado"
+          git ls-files ./public | grep -vErf '\.(html|css|js|yml)$' ./public && echo "Erro: Um dos ficheiros é de um tipo manhoso" && exit 1 || echo "Nenhum ficheiro manhoso encontrado"
     
 
       - name: Run tests
