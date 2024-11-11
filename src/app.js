@@ -7,7 +7,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 // Rota principal retorna apenas a mensagem de boas-vindas
 app.get('/', (req, res) => {
-  res.send('Bem-vindo a Agencia de Viagens!');
+  res.send('Bem vindo');
 });
 
 // Iniciar o servidor apenas se o arquivo for executado diretamente
