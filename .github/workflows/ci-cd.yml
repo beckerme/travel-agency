@@ -38,11 +38,11 @@ jobs:
 
       - name: Give permission to Jest
         run: chmod +x ./node_modules/.bin/jest
-      
+
       - name: Verify if all files are of type css/html/js/ts
         run: |
-          # Verifica alterações no código
-          files_changed=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          # Verifica as alterações no repositório
+          files_changed=$(git diff --name-only HEAD~1 HEAD)
           invalid_files=$(echo "$files_changed" | grep -vE '\.(html|css|js|ts|yml|json)$')
 
           if [ -n "$invalid_files" ]; then
@@ -51,7 +51,6 @@ jobs:
           else
             echo "Todos os arquivos têm extensões permitidas."
           fi
-    
 
       - name: Run tests
         run: npm test
@@ -63,4 +62,3 @@ jobs:
     steps:
       - name: Deploy to production
         run: echo "Deploying to production environment"
-
