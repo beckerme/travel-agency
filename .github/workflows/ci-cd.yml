@@ -38,6 +38,17 @@ jobs:
 
       - name: Give permission to Jest
         run: chmod +x ./node_modules/.bin/jest
+      
+      - name: Verify if all files are of type css/html/js/ts
+        run: |
+          # Verifica arquivos com extensões diferentes de html, css, js, ts
+          invalid_files=$(find . -type f ! \( -iname "*.html" -o -iname "*.css" -o -iname "*.js" -o -iname "*.ts" \))
+          if [ -n "$invalid_files" ]; then
+            echo "Arquivos inválidos encontrados: $invalid_files"
+            exit 1
+          else
+            echo "Todos os arquivos têm extensões permitidas."
+          fi
 
       - name: Run tests
         run: npm test
@@ -49,4 +60,3 @@ jobs:
     steps:
       - name: Deploy to production
         run: echo "Deploying to production environment"
-

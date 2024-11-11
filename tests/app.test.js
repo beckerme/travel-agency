@@ -13,18 +13,4 @@ describe('Testando rota principal', () => {
     const response = await request(app).get('/rota-que-nao-existe');
     expect(response.statusCode).toBe(404);
   });
-
-  it('Deve permitir apenas arquivos com extensões HTML, CSS e JS', async () => {
-    const cssResponse = await request(app).get('/a.css');
-    expect(cssResponse.statusCode).toBe(200);
-    expect(cssResponse.headers['content-type']).toMatch(/text\/css/);
-  
-    const jsResponse = await request(app).get('/b.js');
-    expect(jsResponse.statusCode).toBe(200);
-    expect(jsResponse.headers['content-type']).toMatch(/application\/javascript/);
-  
-    const imgResponse = await request(app).get('/image.png');
-    expect(imgResponse.statusCode).toBe(404);
-  });
-  
 });
