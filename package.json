@@ -26,9 +26,15 @@
     "supertest": "^7.0.0"
   },
   "lint-staged": {
-    "*.html": "eslint",
-    "*.css": "eslint",
-    "*.js": "eslint",
-    "*.yml": "eslint"
+    "*.html": "eslint --fix",
+  "*.css": "eslint --fix",
+  "*.js": "eslint --fix",
+  "*.yml": "eslint --fix",
+  "*.json": "eslint --fix",
+  "*.md": "eslint --fix",
+  "public/**/*": [
+    "eslint --fix",
+    "git add"
+  ]
   }
 }
