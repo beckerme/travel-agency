@@ -2,13 +2,13 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-// Configura o servidor para servir arquivos estáticos da pasta "src"
-app.use(express.static(path.join(__dirname, '../public')));
-
 // Rota principal retorna apenas a mensagem de boas-vindas
 app.get('/', (req, res) => {
   res.send('Bem vindo');
 });
+
+// Configura o servidor para servir arquivos estáticos da pasta "src"
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Iniciar o servidor apenas se o arquivo for executado diretamente
 if (require.main === module) {
